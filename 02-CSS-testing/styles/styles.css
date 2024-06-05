@@ -1,3 +1,4 @@
+/* Text Styles */
 body {
   font-family: Arial, sans-serif;
   color: #333;
@@ -24,4 +25,40 @@ body {
 
 .font-large {
   font-size: 48px;
+}
+
+/* Layout Styles */
+.container {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.inline-block-element {
+  display: inline-block;
+}
+
+.margin {
+  margin: 20px 0;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.random {
+  padding: 10px 20px 10px 20px;
+  padding: 10px 10px;
+}
+
+.test .random {
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.border {
+  border: 2px solid #000;
+  border-radius: 5px;
 }

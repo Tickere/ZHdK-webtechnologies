@@ -1,0 +1,44 @@
+/* Flexbox */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.flex-container-vertical {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.flex-box {
+  margin: 10px;
+  padding: 20px;
+  background-color: rgb(99, 209, 209);
+  border: 1px solid rgb(43, 44, 44);
+  border-radius: 5px;
+  flex-grow: 5px;
+  color: rgb(34, 34, 34);
+}
+
+.image-medium {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.flex-item--big {
+  flex-grow: 3;
+}
+
+/* Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: white;
+  border: 2px solid #ccc;
+}
