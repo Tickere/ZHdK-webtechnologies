@@ -2,6 +2,9 @@ const SPOTIFY_CLIENT_ID = "67b411e20d594f30bf7a8d3bbde54285";
 const SPOTIFY_CLIENT_SECRET = "161fc5e3df004b95af3ba8c62f3eaf54";
 const PLAYLIST_ID = "7fXKDSXrj7RljWC4QTixrd";
 const container = document.querySelector('div[data-js="tracks"]');
+const albumImage = document.getElementById("album-image");
+
+let currentlyPlayingAudio = null;
 
 function fetchPlaylist(token, playlistId) {
   console.log("token: ", token);
@@ -45,20 +48,32 @@ function addTracksToPage(items) {
 
       ${
         item.track.album.images[0]
-          ? `<img class src="${item.track.album.images[0].url}"></img>`
+          ? `<img src="${item.track.album.images[0].url}" alt="Album Art">`
           : "<p>No Image available</p>"
       }
-    
+
       ${
         item.track.preview_url
           ? `<audio controls src="${item.track.preview_url}"></audio>`
           : "<p>No preview available</p>"
       }
-        `;
+    `;
 
     ul.appendChild(li);
   });
   container.appendChild(ul);
+
+  const audioElements = document.querySelectorAll("audio");
+  audioElements.forEach((audio, index) => {
+    audio.addEventListener("play", () => {
+      if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
+        currentlyPlayingAudio.pause();
+      }
+      currentlyPlayingAudio = audio;
+      const albumArt = items[index].track.album.images[0].url;
+      albumImage.src = albumArt;
+    });
+  });
 }
 
 function fetchAccessToken() {
