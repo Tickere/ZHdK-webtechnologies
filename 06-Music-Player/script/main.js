@@ -35,10 +35,10 @@ function addTracksToPage(items) {
   items.forEach((item) => {
     console.log("track: ", item.track);
     const li = document.createElement("li");
+
     li.classList.add("list-item");
 
     li.innerHTML = `
-
       <p>${item.track.name} by ${item.track.artists
       .map((artist) => artist.name)
       .join(", ")}</p>
