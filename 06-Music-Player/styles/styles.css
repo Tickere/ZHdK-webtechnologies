@@ -25,6 +25,10 @@ body {
   margin-top: 10px;
 }
 
+#current-track-controls {
+  margin-top: 10px;
+}
+
 .playlist {
   background-color: white;
   border-radius: 8px;
@@ -44,6 +48,7 @@ ul {
 li.list-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -55,6 +60,15 @@ li img {
   margin-right: 15px;
 }
 
-li audio {
-  margin-left: auto;
+.play-pause-button {
+  padding: 10px 20px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.play-pause-button:hover {
+  background-color: #1ed760;
 }

@@ -3,6 +3,7 @@ const SPOTIFY_CLIENT_SECRET = "161fc5e3df004b95af3ba8c62f3eaf54";
 const PLAYLIST_ID = "7fXKDSXrj7RljWC4QTixrd";
 const container = document.querySelector('div[data-js="tracks"]');
 const albumImage = document.getElementById("album-image");
+const currentTrackControls = document.getElementById("current-track-controls");
 
 let currentlyPlayingAudio = null;
 
@@ -35,7 +36,7 @@ function fetchPlaylist(token, playlistId) {
 function addTracksToPage(items) {
   const ul = document.createElement("ul");
 
-  items.forEach((item) => {
+  items.forEach((item, index) => {
     console.log("track: ", item.track);
     const li = document.createElement("li");
 
@@ -45,33 +46,74 @@ function addTracksToPage(items) {
       <p>${item.track.name} by ${item.track.artists
       .map((artist) => artist.name)
       .join(", ")}</p>
-
-      ${
-        item.track.album.images[0]
-          ? `<img src="${item.track.album.images[0].url}" alt="Album Art">`
-          : "<p>No Image available</p>"
-      }
-
-      ${
-        item.track.preview_url
-          ? `<audio controls src="${item.track.preview_url}"></audio>`
-          : "<p>No preview available</p>"
-      }
+      <button class="play-pause-button" data-index="${index}">Play</button>
     `;
 
     ul.appendChild(li);
   });
   container.appendChild(ul);
 
-  const audioElements = document.querySelectorAll("audio");
-  audioElements.forEach((audio, index) => {
-    audio.addEventListener("play", () => {
-      if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
+  const buttons = document.querySelectorAll(".play-pause-button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = button.getAttribute("data-index");
+      const track = items[index].track;
+
+      // Stop any currently playing audio
+      if (
+        currentlyPlayingAudio &&
+        currentlyPlayingAudio.src !== track.preview_url
+      ) {
         currentlyPlayingAudio.pause();
+        const prevButton = document.querySelector(
+          `.play-pause-button[data-index="${currentlyPlayingAudio.getAttribute(
+            "data-index"
+          )}"]`
+        );
+        if (prevButton) {
+          prevButton.textContent = "Play";
+        }
       }
-      currentlyPlayingAudio = audio;
-      const albumArt = items[index].track.album.images[0].url;
+
+      // Update current track controls
+      const trackName = track.name;
+      const artistName = track.artists.map((artist) => artist.name).join(", ");
+      const controlsHtml = `
+        <p>Now playing: ${trackName} by ${artistName}</p>
+        <audio controls id="current-audio" src="${track.preview_url}"></audio>
+      `;
+      currentTrackControls.innerHTML = controlsHtml;
+      const currentAudio = document.getElementById("current-audio");
+
+      if (
+        currentlyPlayingAudio &&
+        currentlyPlayingAudio.src === track.preview_url
+      ) {
+        if (currentlyPlayingAudio.paused) {
+          currentlyPlayingAudio.play();
+          button.textContent = "Pause";
+        } else {
+          currentlyPlayingAudio.pause();
+          button.textContent = "Play";
+        }
+      } else {
+        currentAudio.play();
+        button.textContent = "Pause";
+        currentlyPlayingAudio = currentAudio;
+      }
+
+      // Update album art
+      const albumArt = track.album.images[0].url;
       albumImage.src = albumArt;
+
+      // Handle play/pause for the current audio
+      currentAudio.addEventListener("play", () => {
+        button.textContent = "Pause";
+      });
+
+      currentAudio.addEventListener("pause", () => {
+        button.textContent = "Play";
+      });
     });
   });
 }
