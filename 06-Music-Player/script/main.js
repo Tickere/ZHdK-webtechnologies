@@ -4,6 +4,7 @@ const PLAYLIST_ID = "7fXKDSXrj7RljWC4QTixrd";
 const container = document.querySelector('div[data-js="tracks"]');
 const albumImage = document.getElementById("album-image");
 const currentTrackControls = document.getElementById("current-track-controls");
+const currentSongTitle = document.getElementById("current-song-title");
 
 let currentlyPlayingAudio = null;
 
@@ -52,12 +53,12 @@ function addTracksToPage(items) {
       <p>${item.track.name} by ${item.track.artists
       .map((artist) => artist.name)
       .join(", ")}</p>
-
-      <p>${formatDuration(item.track.duration_ms)}</p>
-
-      <button class="play-pause-button" data-index="${index}">
-        <img src="images/play.png" alt="Play" />
-      </button>
+      <div class="track-info">
+        <p>${formatDuration(item.track.duration_ms)}</p>
+        <button class="play-pause-button" data-index="${index}">
+          <img src="images/play.png" alt="Play" />
+        </button>
+      </div>
     `;
 
     ul.appendChild(li);
@@ -97,6 +98,9 @@ function addTracksToPage(items) {
       `;
       currentTrackControls.innerHTML = controlsHtml;
       const currentAudio = document.getElementById("current-audio");
+
+      // Update current song title
+      currentSongTitle.textContent = `Current song playing: ${trackName}`;
 
       if (
         currentlyPlayingAudio &&
