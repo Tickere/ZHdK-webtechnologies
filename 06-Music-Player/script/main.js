@@ -33,6 +33,12 @@ function fetchPlaylist(token, playlistId) {
     });
 }
 
+function formatDuration(durationMs) {
+  const minutes = Math.floor(durationMs / 60000);
+  const seconds = Math.floor((durationMs % 60000) / 1000);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+}
+
 function addTracksToPage(items) {
   const ul = document.createElement("ul");
 
@@ -46,7 +52,12 @@ function addTracksToPage(items) {
       <p>${item.track.name} by ${item.track.artists
       .map((artist) => artist.name)
       .join(", ")}</p>
-      <button class="play-pause-button" data-index="${index}">Play</button>
+
+      <p>${formatDuration(item.track.duration_ms)}</p>
+
+      <button class="play-pause-button" data-index="${index}">
+        <img src="images/play.png" alt="Play" />
+      </button>
     `;
 
     ul.appendChild(li);
@@ -71,7 +82,9 @@ function addTracksToPage(items) {
           )}"]`
         );
         if (prevButton) {
-          prevButton.textContent = "Play";
+          const prevButtonImg = prevButton.querySelector("img");
+          prevButtonImg.src = "images/play.png";
+          prevButtonImg.alt = "Play";
         }
       }
 
@@ -91,14 +104,20 @@ function addTracksToPage(items) {
       ) {
         if (currentlyPlayingAudio.paused) {
           currentlyPlayingAudio.play();
-          button.textContent = "Pause";
+          const buttonImg = button.querySelector("img");
+          buttonImg.src = "images/pause.png";
+          buttonImg.alt = "Pause";
         } else {
           currentlyPlayingAudio.pause();
-          button.textContent = "Play";
+          const buttonImg = button.querySelector("img");
+          buttonImg.src = "images/play.png";
+          buttonImg.alt = "Play";
         }
       } else {
         currentAudio.play();
-        button.textContent = "Pause";
+        const buttonImg = button.querySelector("img");
+        buttonImg.src = "images/pause.png";
+        buttonImg.alt = "Pause";
         currentlyPlayingAudio = currentAudio;
       }
 
@@ -108,11 +127,15 @@ function addTracksToPage(items) {
 
       // Handle play/pause for the current audio
       currentAudio.addEventListener("play", () => {
-        button.textContent = "Pause";
+        const buttonImg = button.querySelector("img");
+        buttonImg.src = "images/pause.png";
+        buttonImg.alt = "Pause";
       });
 
       currentAudio.addEventListener("pause", () => {
-        button.textContent = "Play";
+        const buttonImg = button.querySelector("img");
+        buttonImg.src = "images/play.png";
+        buttonImg.alt = "Play";
       });
     });
   });
