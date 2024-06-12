@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #535e56;
   margin: 0;
   height: 100vh;
   width: 100%;
@@ -46,16 +46,25 @@ body {
 }
 
 #current-track-controls {
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
 }
 
 .track-controls {
   height: 300px;
-  background-color: thistle;
+  background-color: #2a2f2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
 
 .playlist {
-  background-color: white;
+  background-color: #535e56;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -113,5 +122,30 @@ li img {
 
 .titel-card {
   height: 300px;
-  background-color: thistle;
+  color: #d2fc51;
+  background-color: #535e56;
+}
+
+audio {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  color: white;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #2a2f2b;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button {
+  filter: invert(100%);
 }
