@@ -11,17 +11,21 @@
   <body>
     <div class="container">
       <div class="flex-cover" id="album-art">
-        <img id="album-image" src="images/chameleon.png" alt="Album Art" />
+        <img id="album-image" src="images/default.png" alt="Album Art" />
       </div>
+
       <div class="playlist">
-        <div class="titel-card">
-          <h1 id="current-song-title">Select Song</h1>
-          <p id="current-artist-name"></p>
+        <div class="selection">
+          <div class="titel-card">
+            <p id="current-artist-name"></p>
+            <h1 id="current-song-title">Select Song</h1>
+          </div>
+
+          <div class="full-height" data-js="tracks">
+            <!-- here we are going to display the fetched tracks -->
+          </div>
         </div>
 
-        <div class="full-height" data-js="tracks">
-          <!-- here we are going to display the fetched tracks -->
-        </div>
         <div class="track-controls">
           <div id="current-track-controls">
             <!-- Audio controls will be added here -->

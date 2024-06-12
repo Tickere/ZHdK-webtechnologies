@@ -1,6 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #535e56;
   margin: 0;
   height: 100vh;
   width: 100%;
@@ -8,7 +7,9 @@ body {
 
 .container {
   display: flex;
-  height: 100%;
+  height: 100vh;
+  color: #262626;
+  background-color: #e94b34;
 }
 
 .flex-player {
@@ -23,9 +24,26 @@ body {
 
 .playlist {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100%;
-  flex-direction: column;
+}
+
+.selection {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.track-controls {
+  height: 400px;
+  width: 100%;
+  background-color: #f2f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
 
 #album-art {
@@ -49,27 +67,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100px;
   width: 100%;
-  padding: 0;
-}
-
-.track-controls {
-  height: 300px;
-  background-color: #2a2f2b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
-
-.playlist {
-  background-color: #535e56;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0px 20px 0px 20px;
 }
 
 .full-height {
-  height: 100%;
   width: 100%;
   overflow-y: auto;
 }
@@ -87,15 +90,8 @@ li.list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-li img {
-  max-width: 50px;
-  margin-right: 15px;
+  border-bottom: 1px solid #262626;
+  padding: 10px 60px 10px 60px;
 }
 
 .play-pause-button {
@@ -121,31 +117,16 @@ li img {
 }
 
 .titel-card {
-  height: 300px;
-  color: #d2fc51;
-  background-color: #535e56;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  height: 200px;
+  padding: 20px 40px 20px 40px;
 }
 
 audio {
   width: 100%;
   height: 40px;
   margin: 0;
-  color: white;
-}
-
-audio::-webkit-media-controls-panel {
-  background-color: #2a2f2b;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-pause-button,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-seek-back-button,
-audio::-webkit-media-controls-seek-forward-button,
-audio::-webkit-media-controls-fullscreen-button {
-  filter: invert(100%);
 }

@@ -51,9 +51,7 @@ function addTracksToPage(items) {
     li.classList.add("list-item");
 
     li.innerHTML = `
-      <p>${item.track.name} by ${item.track.artists
-      .map((artist) => artist.name)
-      .join(", ")}</p>
+      <p>${item.track.name}</p>
       <div class="track-info">
         <p>${formatDuration(item.track.duration_ms)}</p>
         <button class="play-pause-button" data-index="${index}">
