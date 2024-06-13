@@ -10,6 +10,7 @@ const trackControls = document.querySelector(".track-controls");
 
 let currentlyPlayingAudio = null;
 
+/* Fetch playlist data from Spotify */
 function fetchPlaylist(token, playlistId) {
   console.log("token: ", token);
 
@@ -36,12 +37,14 @@ function fetchPlaylist(token, playlistId) {
     });
 }
 
+/* Format duration from milliseconds to minutes:seconds */
 function formatDuration(durationMs) {
   const minutes = Math.floor(durationMs / 60000);
   const seconds = Math.floor((durationMs % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
 
+/* Add tracks to the page */
 function addTracksToPage(items) {
   const ul = document.createElement("ul");
 
@@ -65,6 +68,7 @@ function addTracksToPage(items) {
   });
   container.appendChild(ul);
 
+  /* Add event listeners to play/pause buttons */
   const buttons = document.querySelectorAll(".play-pause-button");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -105,6 +109,11 @@ function addTracksToPage(items) {
       // Show track controls
       trackControls.style.display = "flex";
 
+      // Update album art
+      const albumArt = track.album.images[0].url;
+      albumImage.src = albumArt;
+
+      // Handle play/pause for the current audio
       if (
         currentlyPlayingAudio &&
         currentlyPlayingAudio.src === track.preview_url
@@ -128,11 +137,6 @@ function addTracksToPage(items) {
         currentlyPlayingAudio = currentAudio;
       }
 
-      // Update album art
-      const albumArt = track.album.images[0].url;
-      albumImage.src = albumArt;
-
-      // Handle play/pause for the current audio
       currentAudio.addEventListener("play", () => {
         const buttonImg = button.querySelector("img");
         buttonImg.src = "images/pause.png";
@@ -148,6 +152,7 @@ function addTracksToPage(items) {
   });
 }
 
+/* Fetch access token from Spotify */
 function fetchAccessToken() {
   fetch("https://accounts.spotify.com/api/token", {
     method: "POST",

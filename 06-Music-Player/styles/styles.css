@@ -1,3 +1,4 @@
+/* Font Definitions */
 @font-face {
   font-family: "Angst Bold";
   src: url("../fonts/Angst-Bold.otf") format("opentype");
@@ -14,11 +15,42 @@
 
 @font-face {
   font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
   src: url("../fonts/Manrope-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
+/* Typography Styles */
+h1 {
+  font-size: 60px;
+  line-height: 1.1;
+  margin: 0;
+  font-family: "Angst Bold", Arial, sans-serif;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 1;
+  font-family: "Manrope", Arial, sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  font-family: "Manrope", Arial, sans-serif;
+  font-weight: normal;
+}
+
+/* Global Styles */
 body {
   font-family: "Manrope", Arial, sans-serif, "Angst Bold";
   margin: 0;
@@ -26,6 +58,7 @@ body {
   width: 100%;
 }
 
+/* Styles */
 .container {
   display: flex;
   height: 100vh;
@@ -37,42 +70,6 @@ body {
   display: flex;
   height: 100vh;
   width: 100%;
-}
-
-.playlist {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-}
-
-.title-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  height: 200px;
-  flex: 0 0 200px;
-  padding: 20px 40px 20px 40px;
-}
-
-.selection {
-  flex-grow: 1;
-  width: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-
-.track-controls {
-  height: 400px;
-  width: auto;
-  padding: 0px 20px 0px 20px;
-  background-color: #f2f3f4;
-  display: none; /* Hide the controls initially */
-  justify-content: center;
-  align-items: center;
 }
 
 #album-art {
@@ -88,29 +85,52 @@ body {
   object-fit: cover;
 }
 
+.playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.title-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 200px;
+  flex: 0 0 200px;
+  padding: 20px 40px;
+}
+
+.selection {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.track-display {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.track-controls {
+  height: 400px;
+  width: auto;
+  padding: 0px 20px;
+  background-color: #f2f3f4;
+  display: none; /* Hide the controls initially */
+  justify-content: center;
+  align-items: center;
+}
+
 #current-track-controls {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
   width: 100%;
-}
-
-.full-height {
-  width: 100%;
-  overflow-y: auto;
-}
-
-h1 {
-  font-size: 60px;
-  margin: 0;
-  font-family: "Angst Bold", Arial, sans-serif;
-}
-
-p {
-  margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
-  font-weight: normal;
 }
 
 ul {
