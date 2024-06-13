@@ -6,6 +6,7 @@ const albumImage = document.getElementById("album-image");
 const currentTrackControls = document.getElementById("current-track-controls");
 const currentSongTitle = document.getElementById("current-song-title");
 const currentArtistName = document.getElementById("current-artist-name");
+const trackControls = document.querySelector(".track-controls");
 
 let currentlyPlayingAudio = null;
 
@@ -51,13 +52,13 @@ function addTracksToPage(items) {
     li.classList.add("list-item");
 
     li.innerHTML = `
-      <p>${item.track.name}</p>
       <div class="track-info">
-        <p>${formatDuration(item.track.duration_ms)}</p>
         <button class="play-pause-button" data-index="${index}">
           <img src="images/play.png" alt="Play" />
         </button>
+        <p>${item.track.name}</p>
       </div>
+      <p>${formatDuration(item.track.duration_ms)}</p>
     `;
 
     ul.appendChild(li);
@@ -100,6 +101,9 @@ function addTracksToPage(items) {
       currentArtistName.textContent = `${track.artists
         .map((artist) => artist.name)
         .join(", ")}`;
+
+      // Show track controls
+      trackControls.style.display = "flex";
 
       if (
         currentlyPlayingAudio &&

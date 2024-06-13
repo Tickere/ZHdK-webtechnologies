@@ -1,5 +1,26 @@
+@font-face {
+  font-family: "Angst Bold";
+  src: url("../fonts/Angst-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Manrope", Arial, sans-serif, "Angst Bold";
   margin: 0;
   height: 100vh;
   width: 100%;
@@ -12,10 +33,6 @@ body {
   background-color: #e94b34;
 }
 
-.flex-player {
-  display: flex;
-}
-
 .flex-cover {
   display: flex;
   height: 100vh;
@@ -25,8 +42,20 @@ body {
 .playlist {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100vh;
   width: 100%;
+}
+
+.title-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  height: 200px;
+  flex: 0 0 200px;
+  padding: 20px 40px 20px 40px;
 }
 
 .selection {
@@ -38,12 +67,12 @@ body {
 
 .track-controls {
   height: 400px;
-  width: 100%;
+  width: auto;
+  padding: 0px 20px 0px 20px;
   background-color: #f2f3f4;
-  display: flex;
+  display: none; /* Hide the controls initially */
   justify-content: center;
   align-items: center;
-  padding: 0;
 }
 
 #album-art {
@@ -59,17 +88,12 @@ body {
   object-fit: cover;
 }
 
-#album-audio {
-  margin-top: 10px;
-}
-
 #current-track-controls {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
   width: 100%;
-  padding: 0px 20px 0px 20px;
 }
 
 .full-height {
@@ -78,12 +102,21 @@ body {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 60px;
+  margin: 0;
+  font-family: "Angst Bold", Arial, sans-serif;
+}
+
+p {
+  margin: 0;
+  font-family: "Manrope", Arial, sans-serif;
+  font-weight: normal;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
+  font-family: "Manrope", Arial, sans-serif;
 }
 
 li.list-item {
@@ -91,7 +124,11 @@ li.list-item {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #262626;
-  padding: 10px 60px 10px 60px;
+  padding: 10px 60px 10px 40px;
+}
+
+li.list-item:hover {
+  background-color: #db4731;
 }
 
 .play-pause-button {
@@ -113,16 +150,7 @@ li.list-item {
 .track-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.titel-card {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  height: 200px;
-  padding: 20px 40px 20px 40px;
+  gap: 20px;
 }
 
 audio {
