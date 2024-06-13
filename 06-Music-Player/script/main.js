@@ -9,6 +9,7 @@ const currentArtistName = document.getElementById("current-artist-name");
 const trackControls = document.querySelector(".track-controls");
 
 let currentlyPlayingAudio = null;
+let currentlyPlayingLi = null;
 
 /* Fetch playlist data from Spotify */
 function fetchPlaylist(token, playlistId) {
@@ -74,6 +75,7 @@ function addTracksToPage(items) {
     button.addEventListener("click", () => {
       const index = button.getAttribute("data-index");
       const track = items[index].track;
+      const li = button.closest("li");
 
       // Stop any currently playing audio
       if (
@@ -90,6 +92,9 @@ function addTracksToPage(items) {
           const prevButtonImg = prevButton.querySelector("img");
           prevButtonImg.src = "images/play.png";
           prevButtonImg.alt = "Play";
+        }
+        if (currentlyPlayingLi) {
+          currentlyPlayingLi.classList.remove("playing");
         }
       }
 
@@ -135,18 +140,22 @@ function addTracksToPage(items) {
         buttonImg.src = "images/pause.png";
         buttonImg.alt = "Pause";
         currentlyPlayingAudio = currentAudio;
+        currentlyPlayingLi = li;
+        li.classList.add("playing");
       }
 
       currentAudio.addEventListener("play", () => {
         const buttonImg = button.querySelector("img");
         buttonImg.src = "images/pause.png";
         buttonImg.alt = "Pause";
+        li.classList.add("playing");
       });
 
       currentAudio.addEventListener("pause", () => {
         const buttonImg = button.querySelector("img");
         buttonImg.src = "images/play.png";
         buttonImg.alt = "Play";
+        li.classList.remove("playing");
       });
     });
   });

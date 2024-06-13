@@ -50,7 +50,7 @@ p {
   font-weight: normal;
 }
 
-/* Global Styles */
+/* Styles */
 body {
   font-family: "Manrope", Arial, sans-serif, "Angst Bold";
   margin: 0;
@@ -58,7 +58,6 @@ body {
   width: 100%;
 }
 
-/* Styles */
 .container {
   display: flex;
   height: 100vh;
@@ -116,11 +115,10 @@ body {
 }
 
 .track-controls {
-  height: 400px;
   width: auto;
   padding: 0px 20px;
   background-color: #f2f3f4;
-  display: none; /* Hide the controls initially */
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -165,6 +163,10 @@ li.list-item:hover {
 
 .play-pause-button:hover img {
   opacity: 0.8;
+}
+
+.list-item.playing {
+  background-color: #bf3e2b;
 }
 
 .track-info {
