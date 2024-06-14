@@ -106,6 +106,7 @@ function addTracksToPage(items) {
               "data-index"
             )}"]`
           );
+          // Update play/pause button for previously playing track
           if (prevButton) {
             const prevButtonImg = prevButton.querySelector("img");
             prevButtonImg.src = "images/play.png";
